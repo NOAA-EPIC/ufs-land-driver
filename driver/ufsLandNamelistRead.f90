@@ -25,12 +25,13 @@ type, public :: namelist_type
   integer        :: run_timesteps
   integer        :: restart_timesteps
   
-  integer        :: begloc
-  integer        :: endloc
+  integer        :: vector_start
+  integer        :: vector_end
+  integer        :: vector_length
 
-  integer        :: begsub
-  integer        :: endsub
-  integer        :: lensub
+  integer        :: subset_start
+  integer        :: subset_end
+  integer        :: subset_length
 
   integer        :: land_model
 
@@ -113,8 +114,8 @@ contains
     integer        :: run_seconds = -999
     integer        :: run_timesteps = -999
     
-    integer        :: begloc = 1
-    integer        :: endloc = 1
+    integer        :: vector_start = 1
+    integer        :: vector_end = 1
     
     integer        :: land_model = -999
 
@@ -159,7 +160,7 @@ contains
   
     namelist / run_setup  / static_file, init_file, forcing_dir, output_dir, timestep_seconds, &
                             simulation_start, simulation_end, run_days, run_hours, run_minutes, &
-			    run_seconds, run_timesteps, separate_output, begloc, endloc, &
+			    run_seconds, run_timesteps, separate_output, vector_start, vector_end, &
 			    restart_dir, restart_frequency_s, restart_simulation, restart_date
     namelist / land_model_option / land_model
     namelist / structure  / num_soil_levels, forcing_height
@@ -229,8 +230,9 @@ contains
     this%restart_simulation   = restart_simulation
     this%restart_date         = restart_date
     this%restart_dir          = restart_dir
-    this%begloc               = begloc
-    this%endloc               = endloc
+    this%vector_start         = vector_start
+    this%vector_end           = vector_end
+    this%vector_length        = vector_end - vector_start + 1
     this%simulation_start     = simulation_start
     this%simulation_end       = simulation_end
     this%run_days             = run_days

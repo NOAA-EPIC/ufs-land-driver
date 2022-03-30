@@ -10,6 +10,7 @@
      print "   2. MSU/NOAA Orion \n";
      print "   3. NCAR Cheyenne \n";
      print "   4. gfortran compiler serial \n";
+     print "   5. gfortran compiler parallel \n";
      print "   0. exit only \n";
 
      printf "\nEnter selection : " ;
@@ -60,6 +61,16 @@
   elsif ($response == 4) {
               # generic gfortran settings
               system "cp config/user_build_config.gfortran.serial user_build_config"; 
+              print "=====================================================================\n"; 
+              print "=====================================================================\n"; 
+              print "Generic gfortran user_build_config created. \nYou will likely have to modify for your system.\n"; 
+              print "=====================================================================\n"; 
+              print "=====================================================================\n"; 
+            }
+
+  elsif ($response == 5) {
+              # generic gfortran settings
+              system "cp config/user_build_config.gfortran.parallel user_build_config"; 
               print "=====================================================================\n"; 
               print "=====================================================================\n"; 
               print "Generic gfortran user_build_config created. \nYou will likely have to modify for your system.\n"; 
