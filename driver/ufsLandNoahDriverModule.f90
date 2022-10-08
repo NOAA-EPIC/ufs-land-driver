@@ -24,7 +24,7 @@ subroutine ufsLandNoahDriverInit(namelist, static, forcing, noah)
 
   call static%ReadStatic(namelist)
   
-  call noah%Init(namelist,namelist%subset_length)
+  call noah%Init(namelist,namelist%lensub)
 
   if(namelist%restart_simulation) then
     call restart%ReadRestartNoah(namelist, noah)
@@ -88,7 +88,7 @@ associate (                             &
    dswsfc     => forcing%downward_shortwave  ,&
    wind       => forcing%wind_speed          ,&
    tprcp      => forcing%precipitation       ,&
-   im         => namelist%subset_length      ,&
+   im         => noah%static%im        ,&
    km         => noah%static%km        ,&
    delt       => noah%static%delt      ,&
    isot       => noah%static%isot      ,&
